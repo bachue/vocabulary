@@ -6,7 +6,7 @@ class Word < Thor
           else                     STDOUT
           end
     File.read(file).split("\n").delete_if do |line|
-      line.nil? || line.strip.size == 0
+      line.nil? || line.strip.size == 0 || line.start_with?(' ')
     end.map(&:strip).uniq.sort_by{rand}.each {|line| out.puts line }
 
     out.close if out != STDOUT
